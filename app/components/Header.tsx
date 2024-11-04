@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../images/logo.png";
 import Image from "next/image";
+import Link from "next/link";
 const Header = () => {
   // Array of navigation links
   const navLinks = [
@@ -14,11 +15,10 @@ const Header = () => {
     <header className="shadow-md py-4 px-8 flex justify-between items-center">
       {/* Logo */}
       <div className="text-2xl font-bold text-blue-600 flex flex-row gap-2">
-      <Image src={logo} height={20} width={30} alt="logo" />
-
-        <a href="/">
+        <Link href="/">
+          <Image src={logo} height={20} width={30} alt="logo" />
           Shortnr
-        </a>
+        </Link>
       </div>
 
       {/* Dynamic Navigation Links */}

@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
-import { usePathname , } from "next/navigation";
 
-const SingleUrl = ({ shortedUrls }: any) => {
+const SingleUrl = ({ shortedUrls }) => {
 
   
-  const pathname = usePathname();
 
   return (
     <>

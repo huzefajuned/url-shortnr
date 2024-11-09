@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Loader = () => {
+const CustomLoader = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md z-50">
       <div className="flex flex-col items-center space-y-4">
@@ -11,4 +11,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default CustomLoader;

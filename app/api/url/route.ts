@@ -6,6 +6,14 @@ import { nanoid } from "nanoid";
 
 // CREATE NEW SHORT URL
 export async function POST(req: NextRequest) {
+  // const _data = await req.headers;
+
+
+  // console.log('type of _data ', _data.Headers)
+
+
+
+  // console.log(' _data ',_data['Headers'])
   try {
     // DB Connction check
     await connectDB();

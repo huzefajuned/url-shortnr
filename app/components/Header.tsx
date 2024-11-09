@@ -1,45 +1,50 @@
-'use client'
+"use client";
 import React from "react";
 import logo from "../images/logo.png";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import CustomButton from "./ui/CustomButton";
+import Link from "next/link";
+import { authUser } from "../lib/firebase.auth";
 
 const Header = () => {
-
-  const notify = () => toast('Here is your toast.');
+  const notify = () => toast("Here is your toast.");
 
   // Array of navigation links
   const navLinks = [
-    { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Login", href: "#login", isButton: true },
+    { name: "Plans", href: "plans" },
+    { name: "API", href: "apiDocs" },
   ];
 
+
+
   return (
-    <header className="shadow-md py-4 px-8 flex justify-between items-center">
+    <header className="shadow-md py-4 px-8 flex justify-between items-center m-2 rounded-full">
       {/* Logo */}
-      <div className="text-2xl font-bold text-blue-600 flex flex-row gap-2" onClick={notify}>
+      <div
+        className="text-2xl font-bold text-blue-600 flex flex-row gap-2"
+        onClick={notify}
+      >
         <Image src={logo} height={20} width={30} alt="logo" />
         <p> Shortnr</p>
       </div>
 
       {/* Dynamic Navigation Links */}
-      <nav>
-        <ul className="flex space-x-6 text-gray-700">
+      <nav className=" flex flex-row justify-end items-center">
+        <ul className="flex flex-row space-x-10 justify-between items-center text-gray-700">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <a
-                href={link.href}
-                className={`${
-                  link.isButton
-                    ? "bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-                    : "hover:text-blue-500"
-                } transition-colors duration-300`}
-              >
-                {link.name}
-              </a>
+              <Link href={link.href}>{link.name}</Link>
             </li>
           ))}
+
+          {/*  Login and profile  */}
+          {/* inside profile,  logout function add! */}
+          <CustomButton
+            btnTitle="Login_"
+            customStyle={""}
+            onClick={() => authUser()}
+          ></CustomButton>
         </ul>
       </nav>
     </header>

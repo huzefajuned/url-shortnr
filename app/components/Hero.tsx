@@ -1,16 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import toast from "react-hot-toast";
-import { isValidUrl } from "../utils/common";
+import { isValidUrl } from "../lib/common";
 import axios from "axios";
-import Loader from "./ui/Loader";
+import CustomLoader from "./ui/CustomLoader";
+import ShortedUrls from "./ShortedUrls";
 
 const Hero = () => {
-  interface shortedUrlsType {
-    originalUrl: string;
-    shortUrl: string;
-  }
-  const [shortedUrls, setShortedUrls] = useState<shortedUrlsType>();
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -42,34 +38,17 @@ const Hero = () => {
     // 2 send url to server t shorten
   };
 
-  // RETIEVE ALL SHORTED URLs
-  useEffect(() => {
-    (async function () {
-      const data = await axios.get("/api/url");
-
-      console.log("data", data);
-
-      if (data) {
-        if ((data.status = 200)) {
-          toast.success(`${data.data.message}`);
-          setShortedUrls(data.data.urls);
-        }
-      }
-    })();
-  }, []);
-
-  console.log(" shortedUrls is ", shortedUrls);
   return (
-    <div className="h-full flex items-center justify-center w-full">
-      <div className="text-center   mx-auto p-8 w-full ">
-        <h1 className="text-8xl font-bold w-full">
+    <div className="flex  items-center justify-around  rounded-lg shadow-2xl border-2 border-gray-100 m-2 h-[85vh]">
+      <div className=" flex flex-col justify-center   p-8  w-2/3 h-full  rounded-xl ">
+        <h1 className="text-7xl font-bold w-full">
           Shorten Your Links Instantly!!
         </h1>
         <p className="text-white m-8">
           Enter your long URL below, and we’ll make it short and easy to share.
         </p>
 
-        <div className="flex items-center max-w-lg m-auto mt-10">
+        <div className="flex items-center max-w-lg  mt-10">
           <input
             onChange={(e) => setUrl(e.target.value)}
             type="text"
@@ -84,11 +63,10 @@ const Hero = () => {
           </button>
         </div>
       </div>
-
-      <div className="text-center   mx-auto p-8 w-full ">
-        <h2>Shorted URLs....</h2>
-      </div>
-      {loading && <Loader />}
+      {/* horted URLS separated Components!!! */}
+      <ShortedUrls />
+      {/*  CustomLoader Components!!! */}
+      {loading && <CustomLoader />}
     </div>
   );
 };

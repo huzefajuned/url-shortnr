@@ -3,7 +3,8 @@ export function isValidUrl(str: string) {
   try {
     new URL(str);
     return true;
-  } catch (err) {
+  } catch (error) {
+    console.log('some erro', error)
     return false;
   }
 }

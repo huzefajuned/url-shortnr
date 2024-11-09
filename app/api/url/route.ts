@@ -1,11 +1,11 @@
 // pages/api/shorten.js
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { connectDB } from "../db/connection";
 import { UrlModel } from "../model/url.model";
 import { nanoid } from "nanoid";
 
 // CREATE NEW SHORT URL
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     // DB Connction check
     await connectDB();
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     // Check if URL already exists
-    let alreadyExists = await UrlModel.findOne({ originalUrl });
+    const alreadyExists = await UrlModel.findOne({ originalUrl });
     if (alreadyExists) {
       return new Response(
         JSON.stringify({
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 }
 
 // GET SHORT URLS
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET() {
   try {
     // DB Connction check
     await connectDB();

@@ -11,7 +11,7 @@ const Hero = () => {
     shortUrl: string;
   }
   const [shortedUrls, setShortedUrls] = useState<shortedUrlsType>();
-  const [url, setUrl] = useState<string | any>();
+  const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   // api for short an URL

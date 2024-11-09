@@ -3,14 +3,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SingleUrl from "./SingleUrl";
+import { shortedUrlsProps } from "../types/types";
 
 const ShortedUrls = () => {
-  interface shortedUrlsType {
-    originalUrl: string;
-    shortUrl: string;
-  }
+ 
 
-  const [shortedUrls, setShortedUrls] = useState<shortedUrlsType[]>([]);
+  const [shortedUrls, setShortedUrls] = useState<shortedUrlsProps[]>([]);
   // const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // console.log("shortedUrls :", shortedUrls);
 
@@ -26,6 +24,7 @@ const ShortedUrls = () => {
           setShortedUrls(data.data.urls);
         }
       } catch (error) {
+        console.log('error',error)
         toast.error("Failed to fetch URLs");
       }
     })();

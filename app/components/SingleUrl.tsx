@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
+import {  SingleUrlProps } from "../types/types";
 
-const SingleUrl = ({ shortedUrls }) => {
-
-  
-
+const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
   return (
     <>
-      {shortedUrls.map((url: any, index: number) => (
+      {shortedUrls.map((url, index: number) => (
         <div
           key={index}
           className="w-full md:w-2/3 lg:w-1/2 p-4 bg-white shadow-md rounded-md border border-gray-200"

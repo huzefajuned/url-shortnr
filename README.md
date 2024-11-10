@@ -1,4 +1,3 @@
-Here’s the updated README with the correct tech stack reflecting the use of Next.js API routes instead of Node.js and Express:
 
 ---
 

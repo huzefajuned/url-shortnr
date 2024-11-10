@@ -14,8 +14,8 @@ const urlSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: '7d'  // optional: set an expiry of 7 days for each short URL
-  }
+    expires: "7d",
+  },
 });
 
 export const UrlModel = mongoose.model("url", urlSchema);

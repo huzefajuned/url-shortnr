@@ -1,5 +1,5 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { isValidUrl } from "../lib/common";
 import axios from "axios";
@@ -16,7 +16,16 @@ const Hero = () => {
     try {
       // Send a POST request with the original URL in the body
       const response = await axios.post("/api/url", { url });
-      console.log("Data in client:", response.data);
+      // toast after succes create
+      if (response.status == 201) {
+        toast.success(`${response.data.message}`);
+      }
+      // toast  if duplicate  found!
+
+      if (response.status == 200) {
+        toast.success(`${response.data.message}`);
+      }
+
     } catch (error) {
       console.error("Error in client:", error);
     } finally {
@@ -28,14 +37,12 @@ const Hero = () => {
   const onSubmit_ = (url: string) => {
     // 1 valdidate  url on client...
     const _isValidUrl = isValidUrl(url);
-    console.log("_isValidUrl is ", _isValidUrl);
+    // console.log("_isValidUrl is ", _isValidUrl);
     if (!_isValidUrl) {
-      toast.error(`please check URL once! , ${_isValidUrl}`);
+      toast.error(`please check URL once!`);
     } else {
-      toast.success(`URL IS : ', ${url}`);
       shortUrl(url);
     }
-    // 2 send url to server t shorten
   };
 
   return (
@@ -66,7 +73,7 @@ const Hero = () => {
       {/* horted URLS separated Components!!! */}
       <ShortedUrls />
       {/*  CustomLoader Components!!! */}
-      {loading && <CustomLoader />}
+      {loading && <CustomLoader type="auto" />}
     </div>
   );
 };

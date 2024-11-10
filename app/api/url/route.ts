@@ -6,14 +6,6 @@ import { nanoid } from "nanoid";
 
 // CREATE NEW SHORT URL
 export async function POST(req: NextRequest) {
-  // const _data = await req.headers;
-
-
-  // console.log('type of _data ', _data.Headers)
-
-
-
-  // console.log(' _data ',_data['Headers'])
   try {
     // DB Connction check
     await connectDB();
@@ -21,6 +13,7 @@ export async function POST(req: NextRequest) {
     // pickup the originla url form  req body
     const body = await req.json();
     const originalUrl = (await body?.url) || "";
+    const host = process.env.NEXT_PUBLIC_HOST_URL;
 
     // loging originalUrl
     console.log("originalUrl in server :", originalUrl);
@@ -46,8 +39,13 @@ export async function POST(req: NextRequest) {
 
     // if not already exists ,
     // then  Generate short URL
-    const shortUrl = nanoid(8); // Generates an 8-character unique ID
-    const newUrl = UrlModel.create({ originalUrl, shortUrl });
+    const uniqueID = nanoid(8); // Generates an 8-character unique ID
+    const shortURL = `${host}/${uniqueID}`;
+
+    const newUrl = await UrlModel.create({
+      originalUrl: originalUrl,
+      shortUrl: shortURL,
+    });
     // await UrlModel.save();
 
     return new Response(JSON.stringify({ newUrl, message: "URL  created!" }), {

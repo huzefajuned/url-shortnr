@@ -39,7 +39,7 @@ const ShareModel: React.FC<ShareModelProps> = ({ title, closeMe }) => {
     >
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
-        className="rounded-xl shadow-lg p-6 max-w-xl w-full transform transition-transform duration-300 ease-in-out border-2 border-gray-400 bg-white"
+        className="rounded-xl shadow-lg p-6 max-w-xl  w-11/12 sm:w-full transform transition-transform duration-300 ease-in-out border-2 border-gray-400 bg-white"
         onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside
       >
         <div className="flex flex-col sm:flex-row items-center justify-between mb-4">

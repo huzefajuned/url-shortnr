@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import type { SingleUrlProps, UrlDetails } from "../types/types";
 import QRCode from "react-qr-code";
 import ShareModel from "./ShareModel";
-import toast from "react-hot-toast";
+import { formatUrl } from "../lib/common";
 
 const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
   // simple state for show/hide ShareModel Component.
@@ -19,13 +19,14 @@ const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
   const closeShareModel = () => {
     setShow(false);
   };
+
   return (
-    <div className=" flex flex-col gap-3">
+    <div className=" flex flex-col gap-3  w-11/12 sm:w-1/2">
       {shortedUrls.map((url, index: number) => (
         // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+        // biome-ignore lint/a11y/useKeyWithMouseEvents: <explanation>
         <div
           onClick={() => showUrlDetails(url)}
-          onMouseEnter={() => toast.success("click for more info!")}
           key={`${index * 2}`}
           className="  flex flex-row justify-between items-center  md:w-2/3 lg:w-full p-2 sm:p-4 bg-purple-50 rounded-lg hover:bg-green-300 shadow-lg cursor-pointer "
         >
@@ -35,7 +36,7 @@ const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
             // onMouseEnter={()=>toast.success('clciks on QR')}
           />
           <div className=" flex  flex-col sm:flex-row items-center mx-2">
-            <p className="text-gray-600 font-semibold text-xs sm:text-lg">
+            <p className="text-gray-700 font-bold  mr-2 text-xs sm:text-lg">
               Short URL:
             </p>
             <a
@@ -44,7 +45,7 @@ const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
               rel="noopener noreferrer"
               className="text-blue-600 font-semibold text-xs sm:text-lg truncate"
             >
-              {url.shortUrl}
+              {formatUrl(url.shortUrl)}
             </a>
           </div>
         </div>

@@ -18,3 +18,14 @@ export interface CustomLoaderProps {
   // full  is always 100vh and 100vw
   type: "auto" | "full";
 }
+
+
+export interface UrlDetails {
+  shortUrl: string;
+}
+
+
+export interface ShareModelProps {
+  title: string;
+  closeMe: () => void;
+}

@@ -5,7 +5,7 @@ import { isValidUrl } from "../lib/common";
 import axios from "axios";
 import CustomLoader from "./ui/CustomLoader";
 import ShortedUrls from "./ShortedUrls";
-import AutoSlider from "./AutoSlider";
+// import AutoSlider from "./AutoSlider";
 import CustomButton from "./ui/CustomButton";
 import Dev from "./Dev";
 
@@ -77,7 +77,7 @@ const Hero = () => {
         {loading && <CustomLoader type="auto" />}
       </div>
       {/* slider and developer components! */}
-      <AutoSlider />
+      {/* <AutoSlider /> */}
       <Dev />
     </div>
   );

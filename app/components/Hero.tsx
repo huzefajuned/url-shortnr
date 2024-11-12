@@ -48,19 +48,19 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex  flex-col   items-center justify-around  rounded-lg  m-2 h-[85vh]">
-      <div className="flex  flex-col sm:flex-row  items-center justify-around  rounded-lg m-2 h-[85vh]">
-        <div className=" flex flex-col justify-center   p-2 sm:p-8 w-full   sm:w-2/3 h-full  rounded-xl ">
-          <h1 className="text-4xl sm:text-6xl font-bold w-full">
+    <div className="flex  flex-col   items-center justify-around  rounded-lg  h-[90vh] w-full">
+      <div className="flex  flex-col sm:flex-row  items-center justify-around  rounded-lg m-2 h-[85vh] bg-gray-100  w-full sm:w-11/12 p-4 overflow-hidden">
+        <div className=" flex flex-col justify-center w-full   p-0 sm:p-8    sm:w-2/3 lg:w-4/5  h-auto sm:h-full  rounded-xl ">
+          <h1 className="text-4xl sm:text-5xl font-bold w-full">
             Shorten Your Links Instantly!!
           </h1>
 
-          <div className="flex items-center max-w-lg gap-5 mt-6  sm:mt-10">
+          <div className="flex flex-row sm:flex-row sm:p-2 items-center w-full  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
             <input
               onChange={(e) => setUrl(e.target.value)}
               type="text"
               placeholder="Paste your URL here"
-              className="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow  px-2 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 
@@ -76,6 +76,7 @@ const Hero = () => {
         {/*  CustomLoader Components!!! */}
         {loading && <CustomLoader type="auto" />}
       </div>
+      {/* slider and developer components! */}
       <AutoSlider />
       <Dev />
     </div>

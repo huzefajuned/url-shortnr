@@ -5,7 +5,6 @@ const features = [
   { title: "Easy" },
   { title: "Shortened" },
   { title: "Secure" },
-  { title: "Statistics" },
   { title: "Reliable" },
   { title: "Devices" },
 ];

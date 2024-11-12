@@ -1,5 +1,4 @@
 export interface shortedUrlsProps {
-  originalUrl: string;
   shortUrl: string;
 }
 

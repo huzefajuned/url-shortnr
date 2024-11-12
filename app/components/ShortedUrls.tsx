@@ -34,19 +34,19 @@ const ShortedUrls = () => {
   }, []);
 
   return (
-    <div className=" p-2 w-full sm:w-1/3 h-[80%] flex  flex-col justify-center items-center  text-center overflow-scroll rounded-lg  border-2 mr-2">
+    <div className="p-2 w-full h-auto sm:min-h-full sm:w-2/3 lg:min-w-1/3  flex  flex-col justify-center items-center  text-center overflow-scroll  rounded-md mt-2 mr-2">
       <h1 className="text-2xl font-bold text-center mb-6">Shortened URLs</h1>
 
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-4  w-full">
         {shortedUrls.length > 0 && !loading ? (
           <>
             <SingleUrl shortedUrls={shortedUrls} />
-            <div>pagination</div>
+            <div>View All</div>
           </>
         ) : (
           // pagination part
 
-          <p className="text-gray-500">No URLs have been shortened yet.</p>
+          <p className="text-gray-700">No URLs have been shortened yet.</p>
         )}
         {loading && <CustomLoader type="auto" />}
       </div>

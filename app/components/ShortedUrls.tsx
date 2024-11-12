@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SingleUrl from "./SingleUrl";
-import { shortedUrlsProps } from "../types/types";
+import type { shortedUrlsProps } from "../types/types";
 import CustomLoader from "./ui/CustomLoader";
 
 const ShortedUrls = () => {
@@ -14,7 +14,7 @@ const ShortedUrls = () => {
 
   // RETRIEVE ALL SHORTED URLs
   useEffect(() => {
-    (async function () {
+    (async () => {
       setLoading(true);
       try {
         const data = await axios.get("/api/url");
@@ -34,7 +34,7 @@ const ShortedUrls = () => {
   }, []);
 
   return (
-    <div className=" p-2 w-1/3 h-[80%] flex  flex-col justify-center items-center  text-center overflow-scroll rounded-lg  border-2 mr-2">
+    <div className=" p-2 w-full sm:w-1/3 h-[80%] flex  flex-col justify-center items-center  text-center overflow-scroll rounded-lg  border-2 mr-2">
       <h1 className="text-2xl font-bold text-center mb-6">Shortened URLs</h1>
 
       <div className="flex flex-col items-center space-y-4">

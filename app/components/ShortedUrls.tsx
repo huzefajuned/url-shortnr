@@ -19,7 +19,7 @@ const ShortedUrls = () => {
       try {
         const data = await axios.get("/api/url");
 
-        console.log("data ", data);
+        // console.log("data ", data);
         if (data && data.status === 200) {
           toast.success(`${data.data.message}`);
           setShortedUrls(data.data.urls);

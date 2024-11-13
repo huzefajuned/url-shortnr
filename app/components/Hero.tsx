@@ -9,9 +9,15 @@ import ShortedUrls from "./ShortedUrls";
 import CustomButton from "./ui/CustomButton";
 import Dev from "./Dev";
 
+// import { useAuth } from "../context/auth.context";
+import ShareModel from "./ShareModel";
+
 const Hero = () => {
+  // const { user:<string> }  = useAuth();
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [showModel, setShowModel] = useState<boolean>(false);
+  const [newShortedUrl, setNewShortedUrl] = useState<string>("");
 
   // api for short an URL
   const shortUrl = async (url: string) => {
@@ -19,6 +25,8 @@ const Hero = () => {
     try {
       // Send a POST request with the original URL in the body
       const response = await axios.post("/api/url", { url });
+
+      console.log("response in  shortUrl", response);
       // toast after succes create
       if (response.status === 201) {
         toast.success(`${response.data.message}`);
@@ -27,6 +35,12 @@ const Hero = () => {
 
       if (response.status === 200) {
         toast.success(`${response.data.message}`);
+      }
+
+      // show model  after new short url creation with share features
+      if (response.status === 200 || response.status === 201) {
+        setNewShortedUrl(response.data.newUrl.shortUrl);
+        setShowModel(true);
       }
     } catch (error) {
       console.error("Error in client:", error);
@@ -55,6 +69,7 @@ const Hero = () => {
             Shorten Your Links Instantly!!
           </h1>
 
+
           <div className="flex flex-row sm:flex-row sm:p-2 items-center w-full  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
             <input
               onChange={(e) => setUrl(e.target.value)}
@@ -71,6 +86,15 @@ const Hero = () => {
             />
           </div>
         </div>
+        {/* show model */}
+
+        {showModel && (
+          <ShareModel
+            title={newShortedUrl}
+            closeMe={() => setShowModel(false)}
+          />
+        )}
+
         {/* horted URLS separated Components!!! */}
         <ShortedUrls />
         {/*  CustomLoader Components!!! */}

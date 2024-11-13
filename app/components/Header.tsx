@@ -7,7 +7,7 @@ import Link from "next/link";
 import { authUser } from "../lib/firebase.auth";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-
+// import { useAuth } from "../context/auth.context";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);

@@ -11,7 +11,7 @@ const Page = () => {
     const shortUrl = window.location.href;
 
     setLoading(true);
-    (async function () {
+    (async () => {
       try {
         const response = await axios.post("/api/redirect", { shortUrl });
         const originalUrl = response.data.originalUrl.originalUrl;

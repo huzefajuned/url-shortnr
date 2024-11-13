@@ -15,10 +15,6 @@ const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
     setShow(true);
   };
 
-  // close Share Model
-  const closeShareModel = () => {
-    setShow(false);
-  };
 
   return (
     <div className=" flex flex-col gap-3  w-11/12 sm:w-1/2">
@@ -50,7 +46,7 @@ const SingleUrl = ({ shortedUrls }: SingleUrlProps) => {
           </div>
         </div>
       ))}
-      {show && <ShareModel title={current} closeMe={closeShareModel} />}
+      {show && <ShareModel title={current} closeMe={() => setShow(false)} />}
     </div>
   );
 };

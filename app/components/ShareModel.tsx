@@ -15,7 +15,7 @@ const ShareModel: React.FC<ShareModelProps> = ({ title, closeMe }) => {
     {
       name: "WhatsApp",
       url: `https://wa.me/?text=${encodeURIComponent(title)}`,
-      icon: "📱", 
+      icon: "📱",
     },
     {
       name: "Twitter",

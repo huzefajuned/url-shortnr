@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/logo.png";
 import Image from "next/image";
 import CustomButton from "./ui/CustomButton";
 import Link from "next/link";
 import { authUser } from "../lib/firebase.auth";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
+
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
   const notify = () => window.location.reload();
 
   // Array of navigation links
@@ -16,26 +19,62 @@ const Header = () => {
     { name: "API", href: "apiDocs" },
   ];
 
+  // active side menu
+  const activeMenu = () => {
+    if (!showMenu) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
+    }
+  };
+
   return (
-    <header className="flex flex-row  justify-between items-center m-2  py-0  sm:py-2 px-4 sm:p-7 ">
+    <header className="flex flex-row  justify-between items-center m-0 sm:m-2  py-4  sm:py-2 px-4 sm:p-7">
       {/* Logo */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
         className="text-2xl font-bold text-blue-600 flex flex-row gap-2 cursor-pointer  items-center  w-11/12"
         onClick={notify}
       >
-        <Image src={logo} height={20} width={30} alt="logo"/>
+        <Image
+          src={logo}
+          height={20}
+          width={30}
+          alt="logo"
+          className="h-10 w-10"
+        />
         <p> Shortnr</p>
-
       </div>
-      <RxHamburgerMenu className="flex sm:hidden w-8 h-8" />
 
+      {/* close/open menu icons for small  devices... */}
+      {showMenu ? (
+        <IoMdClose
+          className="flex sm:hidden w-10 h-10 z-50"
+          onClick={() => {
+            activeMenu();
+          }}
+        />
+      ) : (
+        <RxHamburgerMenu
+          className="flex sm:hidden w-8 h-8"
+          onClick={() => {
+            activeMenu();
+          }}
+        />
+      )}
 
       {/* Dynamic Navigation Links */}
-      <nav className=" flex flex-row  justify-end items-center  ">
-        <ul className=" hidden sm:flex flex-col sm:flex-row space-x-0 sm:space-x-10 justify-between items-center text-gray-700">
+      {/* showMenu will show  small menu */}
+      <nav className="{flex flex-row  justify-end items-center  bg-neutral-500}">
+        <ul
+          className={`${
+            showMenu
+              ? " w-full backdrop-blur-md bg-white bg-opacity-30 h-screen flex flex-col gap-10 justify-center items-center absolute left-0 top-0"
+              : "hidden"
+          } sm:flex sm:flex-row sm:space-x-10  items-center px-2  text-gray-700`}
+        >
           {navLinks.map((link, index) => (
-            <li key={`${index * 2}`} >
+            <li key={`${index * 2}`}>
               <Link href={link.href}>{link.name}</Link>
             </li>
           ))}
@@ -43,8 +82,8 @@ const Header = () => {
           {/*  Login and profile  */}
           {/* inside profile,  logout function add! */}
           <CustomButton
-            btnTitle="Login_"
-            customStyle={""}
+            btnTitle="Login"
+            customStyle="p-2"
             onClick={() => authUser()}
           />
         </ul>

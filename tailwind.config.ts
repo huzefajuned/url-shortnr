@@ -9,8 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#bbd0ff",
+        secondary: "#003049",
+        borderColor: "#e0e1dd",
+        cardBgColor: "#e0b1cb",
+        btnBgColor: "#231942",
+        btnBgHoverColor: "#1e6091",
+
       },
     },
   },

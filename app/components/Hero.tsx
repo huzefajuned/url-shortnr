@@ -60,14 +60,14 @@ const Hero = () => {
               onChange={(e) => setUrl(e.target.value)}
               type="text"
               placeholder="Paste your URL here"
-              className="flex-grow  px-2 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow  px-1 py-2  sm:px-2 sm:py-3  rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 
             <CustomButton
               btnTitle="Shorten"
               onClick={() => onSubmit_(url)}
-              customStyle="bg-green-500 p-3 text-md"
+              customStyle="p-2 sm:p-3 text-md "
             />
           </div>
         </div>

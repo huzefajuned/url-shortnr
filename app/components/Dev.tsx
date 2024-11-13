@@ -19,7 +19,7 @@ const Dev = () => {
             href="https://github.com/huzefajuned"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-black transition-colors"
+            className="text-btnBgColor hover:text-btnBgHoverColor transition-colors"
           >
             <FaGithub size={24} />
           </a>
@@ -27,7 +27,7 @@ const Dev = () => {
             href="https://www.linkedin.com/in/huzefabinjuned"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-black transition-colors"
+            className="text-btnBgColor hover:text-btnBgHoverCol transition-colors"
           >
             <FaLinkedin size={24} />
           </a>

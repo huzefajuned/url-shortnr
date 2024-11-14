@@ -48,8 +48,8 @@ const ShortedUrls = () => {
         ) : (
           <p className="text-gray-700">No URLs have been shortened yet.</p>
         )}
-        {loading && <CustomLoader type="auto" />}
       </div>
+      {loading && <CustomLoader type="full" />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { connectDB } from "../db/connection";
 import { isValidUrl } from "@/app/lib/common";
 import { UrlModel } from "../model/url.model";

@@ -69,7 +69,6 @@ const Hero = () => {
             Shorten Your Links Instantly!!
           </h1>
 
-
           <div className="flex flex-row sm:flex-row sm:p-2 items-center w-full  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
             <input
               onChange={(e) => setUrl(e.target.value)}
@@ -97,9 +96,11 @@ const Hero = () => {
 
         {/* horted URLS separated Components!!! */}
         <ShortedUrls />
+
         {/*  CustomLoader Components!!! */}
-        {loading && <CustomLoader type="auto" />}
+        {loading && <CustomLoader type="full" />}
       </div>
+
       {/* slider and developer components! */}
       {/* <AutoSlider /> */}
       <Dev />

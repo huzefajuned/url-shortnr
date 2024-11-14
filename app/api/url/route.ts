@@ -68,9 +68,13 @@ export async function GET() {
     //  for now i am fetching all urls in one
     //  later i'll add pagination
     // exclude originalUrl
-    const urls = await UrlModel.find().select("-originalUrl");
+    const urls = await UrlModel.find()
+      .sort({ _id: -1 })
+      .limit(1)
+      .select("-originalUrl");
 
-    // console.log("urls are :", urls);
+    console.log("urls are :", urls);
+
     return new Response(JSON.stringify({ urls, message: "URLs fetched!" }), {
       status: 200,
       headers: { "Content-Type": "application/json" },

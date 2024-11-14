@@ -73,7 +73,7 @@ export async function GET() {
       .limit(1)
       .select("-originalUrl");
 
-    console.log("urls are :", urls);
+    // console.log("urls are :", urls);
 
     return new Response(JSON.stringify({ urls, message: "URLs fetched!" }), {
       status: 200,

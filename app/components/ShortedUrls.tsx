@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import SingleUrl from "./SingleUrl";
 import type { shortedUrlsProps } from "../types/types";
 import CustomLoader from "./ui/CustomLoader";
+import CustomButton from "./ui/CustomButton";
 
 const ShortedUrls = () => {
   const [shortedUrls, setShortedUrls] = useState<shortedUrlsProps[]>([]);
@@ -34,16 +35,20 @@ const ShortedUrls = () => {
   }, []);
 
   return (
-    <div className=" bg--500 w-full h-full sm:min-h-full sm:w-2/3 lg:min-w-1/3  flex  flex-col  gap-5 justify-around items-center  text-center overflow-scroll  rounded-md mt-2 mr-2">
+    <div className="w-full h-1/2 sm:min-h-full sm:w-2/3 lg:min-w-1/3  flex  flex-col  gap-5 justify-around items-center  text-center overflow-scroll  rounded-md mt-2 mr-2">
       <h1 className="text-xl sm:text-4xl font-bold text-center">
-        Shortened URLs
+        Recent Short URLs
       </h1>
 
       <div className="flex flex-col items-center space-y-4  gap-2  w-full h-auto">
         {shortedUrls.length > 0 && !loading ? (
           <>
             <SingleUrl shortedUrls={shortedUrls} />
-            <div>View All</div>
+            <CustomButton
+              btnTitle="load more"
+              onClick={() => toast.success('please wait . we`r working on')}
+              customStyle="px-2 py-2 bg-gray-300"
+            />
           </>
         ) : (
           <p className="text-gray-700">No URLs have been shortened yet.</p>

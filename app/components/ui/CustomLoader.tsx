@@ -6,7 +6,7 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({ type }) => {
     <div
       className={`${
         type === "auto"
-          ? "w-auto bg-fuchsia-400 absolute top-0 ring-0"
+          ? "w-auto  absolute top-0 "
           : "w-screen  absolute  top-0 right-0 border-2"
       } flex items-center justify-center backdrop-blur-sm z-10  h-screen`}
     >

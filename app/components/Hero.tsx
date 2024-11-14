@@ -69,19 +69,19 @@ const Hero = () => {
             Shorten Your Links Instantly!!
           </h1>
 
-          <div className="flex flex-row sm:flex-row sm:p-2 items-center w-full  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
+          <div className="flex flex-col w-full  sm:flex-row sm:p-2 items-center  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
             <input
               onChange={(e) => setUrl(e.target.value)}
               type="text"
               placeholder="Paste your URL here"
-              className="flex-grow  px-1 py-2  sm:px-2 sm:py-3  rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow  w-full px-2 py-4  sm:px-2 sm:py-3  rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 
             <CustomButton
               btnTitle="Shorten"
               onClick={() => onSubmit_(url)}
-              customStyle="p-2 sm:p-3 text-md "
+              customStyle="p-3 sm:p-3 text-md  mt-4 sm:mt-0 "
             />
           </div>
         </div>

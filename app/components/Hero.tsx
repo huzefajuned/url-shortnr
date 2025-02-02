@@ -40,9 +40,7 @@ const Hero = () => {
       //  ask user to login first
       if (!user) {
         toast.success(" please login to continue");
-        setTimeout(() => {
           loginWithGoogle();
-        }, 2000);
         return;
       }
       // Send a POST request with the original URL in the body

@@ -3,12 +3,13 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import useAuthStore from "../store/user";
 import { Avatar, AvatarImage } from "@/app/components/ui/avatar";
 import FooterSkeleton from "./skeletons/Footer-Skeleton";
+import { ShinyButton } from "./ui/shiny-button";
 
 const Footer = () => {
-  const { user, loading } = useAuthStore();
+  const { user, loading, loginWithGoogle, logout } = useAuthStore();
 
   if (loading) return <FooterSkeleton />;
-  
+
   return (
     <footer className="bg-slate-100 w-full py-4">
       <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:justify-between container mx-auto px-4">
@@ -49,6 +50,13 @@ const Footer = () => {
         <div className="text-gray-600 hidden sm:flex text-sm">
           © {new Date().getFullYear()} Huzefa Bin Juned. All rights reserved.
         </div>
+
+        {/*  login logout buttons */}
+        {user ? (
+          <ShinyButton onClick={logout}>Logout</ShinyButton>
+        ) : (
+          <ShinyButton onClick={loginWithGoogle}>login</ShinyButton>
+        )}
       </div>
     </footer>
   );

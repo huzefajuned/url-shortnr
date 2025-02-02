@@ -35,7 +35,7 @@ const ShareModel: React.FC<ShareModelProps> = ({ title, closeMe }) => {
     // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div
       onClick={() => closeMe()}
-      className="absolute top-0 left-0 w-full h-full  bg-opacity-80 backdrop-blur-sm flex justify-center items-center"
+      className="absolute top-0 left-0 w-full h-full  bg-opacity-80 backdrop-blur-sm flex justify-center items-center z-10"
     >
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div

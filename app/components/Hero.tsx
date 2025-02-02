@@ -11,8 +11,10 @@ import Image from "next/image";
 import { Input } from "@/app/components/ui/input";
 import { Spinner } from "@/app/components/ui/spinner";
 import { ShinyButton } from "@/app/components/ui/shiny-button";
+import useAuthStore from "../store/user";
 
 const Hero = () => {
+  const { user, loginWithGoogle } = useAuthStore();
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<boolean>(false);
@@ -34,6 +36,15 @@ const Hero = () => {
   const shortUrl = async (url: string) => {
     setLoading(true);
     try {
+      console.log();
+      //  ask user to login first
+      if (!user) {
+        toast.success(" please login to continue");
+        setTimeout(() => {
+          loginWithGoogle();
+        }, 2000);
+        return;
+      }
       // Send a POST request with the original URL in the body
       const response = await axios.post("/api/url", { url });
 
@@ -124,7 +135,7 @@ const Hero = () => {
         <ShortedUrls />
 
         {/*  CustomLoader Components!!! */}
-        {loading && <Spinner size="large"  />}
+        {loading && <Spinner size="large" />}
       </div>
 
       {/* slider and developer components! */}

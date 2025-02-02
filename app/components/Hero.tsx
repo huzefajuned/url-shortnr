@@ -124,7 +124,7 @@ const Hero = () => {
         <ShortedUrls />
 
         {/*  CustomLoader Components!!! */}
-        {!loading && <Spinner size="large" />}
+        {loading && <Spinner size="large"  />}
       </div>
 
       {/* slider and developer components! */}

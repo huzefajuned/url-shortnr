@@ -43,7 +43,7 @@ export function Spinner({
 }: SpinnerContentProps) {
   return (
     <span
-      className={`absolute top-[50%] sm:right-[25%]"${spinnerVariants({
+      className={`absolute top-[50%]"${spinnerVariants({
         show,
       })}`}
     >

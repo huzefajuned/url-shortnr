@@ -3,33 +3,29 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { isValidUrl } from "../lib/common";
 import axios from "axios";
-import CustomLoader from "./ui/CustomLoader";
 import ShortedUrls from "./ShortedUrls";
-// import AutoSlider from "./AutoSlider";
-import CustomButton from "./ui/CustomButton";
-import Dev from "./Dev";
+import Dev from "./Footer";
 import PasteIcon from "../images/paste.png";
-
-// import { useAuth } from "../context/auth.context";
 import ShareModel from "./ShareModel";
 import Image from "next/image";
+import { Input } from "@/app/components/ui/input";
+import { Spinner } from "@/app/components/ui/spinner";
+import { ShinyButton } from "@/app/components/ui/shiny-button";
 
 const Hero = () => {
-  // const { user:<string> }  = useAuth();
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<boolean>(false);
   const [newShortedUrl, setNewShortedUrl] = useState<string>("");
 
-  //  handling copy & paste 
+  //  handling copy & paste
   const handlePaste = async () => {
     try {
       const clipboardText = await navigator.clipboard.readText();
       setUrl(clipboardText);
-      toast.success('paste done!')
-
+      toast.success("paste done!");
     } catch (err) {
-      toast.error('Failed to paste')
+      toast.error("Failed to paste");
       console.error("Failed to paste: ", err);
     }
   };
@@ -76,9 +72,11 @@ const Hero = () => {
     }
   };
 
+  // Skeleton
+
   return (
-    <div className="flex  flex-col   items-center justify-around  rounded-lg  h-[90vh] w-full">
-      <div className="flex  flex-col sm:flex-row  items-center justify-around  rounded-lg m-2 h-[85vh] bg-gray-100  w-full sm:w-11/12 p-4 overflow-hidden">
+    <div className="flex  flex-col  items-center justify-around  rounded-lg  h-[90vh] w-full ">
+      <div className="flex  flex-col sm:flex-row  items-center justify-around border-2 shadow-md  rounded-lg m-2 h-[85vh] bg-gray-100  w-full sm:w-11/12 p-4 overflow-hidden">
         <div className=" flex flex-col justify-center w-full   p-0 sm:p-8    sm:w-2/3 lg:w-4/5  h-auto sm:h-full  rounded-xl ">
           <h1 className="text-4xl sm:text-5xl font-bold w-full">
             Shorten Your Links Instantly!!
@@ -87,28 +85,29 @@ const Hero = () => {
           <div className="flex flex-col w-full  sm:flex-row sm:p-2 items-center  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 
-            <input
+            <Input
               onChange={(e) => setUrl(e.target.value)}
               type="text"
               value={url}
-              placeholder="Paste your URL here"
-              className="flex-grow  w-full px-2 py-4  sm:px-2 sm:py-3  rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Paste URL here"
+              className="py-6"
             />
-          
 
             <div className=" flex flex-row  gap-5 items-center justify-between">
               <Image
-                onClick={()=>handlePaste()}
+                onClick={() => handlePaste()}
                 src={PasteIcon}
                 alt="Paste Icon"
-                className="w-10 h-10 mr-1  cursor-pointer" 
+                className="w-6 h-6 mr-1  cursor-pointer"
               />
 
-              <CustomButton
-                btnTitle="Shorten"
+              <ShinyButton
                 onClick={() => onSubmit_(url)}
-                customStyle="p-3 sm:p-3 text-md  mt-4 sm:mt-0 "
-              /> 
+                className="py-6 mt-5 sm:m-0 hover:bg-gray-200"
+              >
+                {" "}
+                Shorten
+              </ShinyButton>
             </div>
           </div>
         </div>
@@ -125,7 +124,7 @@ const Hero = () => {
         <ShortedUrls />
 
         {/*  CustomLoader Components!!! */}
-        {loading && <CustomLoader type="full" />}
+        {!loading && <Spinner size="large" />}
       </div>
 
       {/* slider and developer components! */}

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SingleUrl from "./SingleUrl";
 import type { shortedUrlsProps } from "../types/types";
-import CustomLoader from "./ui/CustomLoader";
-import CustomButton from "./ui/CustomButton";
+import { Spinner } from "@/app/components/ui/spinner";
+import { ShinyButton } from "./ui/shiny-button";
 
 const ShortedUrls = () => {
   const [shortedUrls, setShortedUrls] = useState<shortedUrlsProps[]>([]);
@@ -44,17 +44,18 @@ const ShortedUrls = () => {
         {shortedUrls.length > 0 && !loading ? (
           <>
             <SingleUrl shortedUrls={shortedUrls} />
-            <CustomButton
-              btnTitle="load more"
-              onClick={() => toast.success('please wait . we`r working on')}
-              customStyle="px-2 py-2 bg-gray-300"
-            />
+            <ShinyButton
+              onClick={() => toast.success("please wait . we`r working on")}
+              className="px-2 py-2 bg-gray-300"
+            >
+              Load more
+            </ShinyButton>
           </>
         ) : (
           <p className="text-gray-700">No URLs have been shortened yet.</p>
         )}
       </div>
-      {loading && <CustomLoader type="full" />}
+      {loading && <Spinner  />}
     </div>
   );
 };

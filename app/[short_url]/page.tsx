@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import CustomLoader from "../components/ui/CustomLoader";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -33,7 +32,7 @@ const Page = () => {
   return (
     <div>
       <p>test</p>
-      {loading && <CustomLoader type="full" />}
+      {loading && <div>...loadig.... </div>}
     </div>
   );
 };

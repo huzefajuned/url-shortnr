@@ -2,16 +2,19 @@
 import React, { useState } from "react";
 import logo from "../images/logo.png";
 import Image from "next/image";
-import CustomButton from "./ui/CustomButton";
 import Link from "next/link";
-import { authUser } from "../lib/firebase.auth";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-// import { useAuth } from "../context/auth.context";
+import { ShinyButton } from "./ui/shiny-button";
+import useAuthStore from "../store/user";
+import { Avatar, AvatarImage } from "@/app/components/ui/avatar";
+
+
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const notify = () => window.location.reload();
+  const { user, loginWithGoogle } = useAuthStore();
 
   // Array of navigation links
   const navLinks = [
@@ -27,6 +30,7 @@ const Header = () => {
       setShowMenu(false);
     }
   };
+
 
   return (
     <header className="flex flex-row  justify-between items-center m-0 sm:m-2  py-4  sm:py-2 px-4 sm:p-7">
@@ -71,7 +75,7 @@ const Header = () => {
             showMenu
               ? " w-full backdrop-blur-md bg-white bg-opacity-30 h-screen flex flex-col gap-10 justify-center items-center absolute left-0 top-0"
               : "hidden"
-          } sm:flex sm:flex-row sm:space-x-10  items-center px-2  text-gray-700`}
+          } sm:flex sm:flex-row sm:space-x-10  items-center px-2  text-gray-700 z-10`}
         >
           {navLinks.map((link, index) => (
             <li key={`${index * 2}`}>
@@ -81,11 +85,15 @@ const Header = () => {
 
           {/*  Login and profile  */}
           {/* inside profile,  logout function add! */}
-          <CustomButton
-            btnTitle="Login"
-            customStyle="p-2"
-            onClick={() => authUser()}
-          />
+          {/* <Button  variant={"outline"} onClick={() => authUser()}>Login</Button> */}
+
+          {user ? (
+            <Avatar>
+              <AvatarImage src={user.photoURL || ""} alt="@shadcn" />
+            </Avatar>
+          ) : (
+            <ShinyButton onClick={loginWithGoogle}>Login</ShinyButton>
+          )}
         </ul>
       </nav>
     </header>
@@ -93,3 +101,8 @@ const Header = () => {
 };
 
 export default Header;
+
+// <CustomButton
+// btnTitle="Login"
+// customStyle="p-2"
+// onClick={() => authUser()}/>

@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export interface shortedUrlsProps {
   shortUrl: string;
 }
@@ -28,4 +30,13 @@ export interface UrlDetails {
 export interface ShareModelProps {
   title: string;
   closeMe: () => void;
+}
+
+// Define the AuthStore {zustand} interface
+export interface AuthState {
+  user: User | null;
+  loading: boolean;
+  loginWithGoogle: () => Promise<void>;
+  logout: () => Promise<void>;
+  setUser: (user: User | null) => void;
 }

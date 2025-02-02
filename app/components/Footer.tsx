@@ -1,7 +1,14 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import useAuthStore from "../store/user";
+import { Avatar, AvatarImage } from "@/app/components/ui/avatar";
+import FooterSkeleton from "./skeletons/Footer-Skeleton";
 
-const Dev = () => {
+const Footer = () => {
+  const { user, loading } = useAuthStore();
+
+  if (loading) return <FooterSkeleton />;
+  
   return (
     <footer className="bg-slate-100 w-full py-4">
       <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:justify-between container mx-auto px-4">
@@ -31,6 +38,12 @@ const Dev = () => {
           >
             <FaLinkedin size={24} />
           </a>
+
+          {user && (
+            <Avatar>
+              <AvatarImage src={user.photoURL || ""} alt="@shadcn" />
+            </Avatar>
+          )}
         </div>
 
         <div className="text-gray-600 hidden sm:flex text-sm">
@@ -41,4 +54,4 @@ const Dev = () => {
   );
 };
 
-export default Dev;
+export default Footer;

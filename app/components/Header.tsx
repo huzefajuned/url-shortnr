@@ -1,15 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import logo from "../images/logo.png";
-import Image from "next/image";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import { ShinyButton } from "./ui/shiny-button";
 import useAuthStore from "../store/user";
 import { Avatar, AvatarImage } from "@/app/components/ui/avatar";
-
-
+import {  Sun } from "lucide-react";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -18,8 +15,9 @@ const Header = () => {
 
   // Array of navigation links
   const navLinks = [
-    { name: "Plans", href: "plans" },
-    { name: "API", href: "apiDocs" },
+    { name: "Features", href: "features" },
+    { name: "Pricing", href: "pricing" },
+    { name: "Analytics", href: "analytics" },
   ];
 
   // active side menu
@@ -31,23 +29,17 @@ const Header = () => {
     }
   };
 
-
   return (
-    <header className="flex flex-row  justify-between items-center m-0 sm:m-2  py-4  sm:py-2 px-4 sm:p-7">
+    <header className="flex  bg-gray-50 rounded-lg sticky top-0  flex-row  justify-between items-center m-0 sm:m-2  py-6  sm:py-5 px-4 sm:p-7">
       {/* Logo */}
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
-        className="text-2xl font-bold text-blue-600 flex flex-row gap-2 cursor-pointer  items-center  w-11/12"
+        className="text-2xl  font-bold text-blue-600 flex flex-row gap-2 cursor-pointer  items-center  w-11/12"
         onClick={notify}
       >
-        <Image
-          src={logo}
-          height={20}
-          width={30}
-          alt="logo"
-          className="h-10 w-10"
-        />
-        <p> Shortnr</p>
+        <h3 className="text-gray-700 text-3xl">
+          URL <span className="text-green-300">Shortnr</span>
+        </h3>
       </div>
 
       {/* close/open menu icons for small  devices... */}
@@ -86,11 +78,14 @@ const Header = () => {
           {/*  Login and profile  */}
           {/* inside profile,  logout function add! */}
           {/* <Button  variant={"outline"} onClick={() => authUser()}>Login</Button> */}
+          <Sun />
 
           {user ? (
-            <Avatar>
-              <AvatarImage src={user.photoURL || ""} alt="@shadcn" />
-            </Avatar>
+            <>
+              <Avatar>
+                <AvatarImage src={user.photoURL || ""} alt="@shadcn" />
+              </Avatar>
+            </>
           ) : (
             <ShinyButton onClick={loginWithGoogle}>Login</ShinyButton>
           )}

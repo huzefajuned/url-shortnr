@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { isValidUrl } from "../lib/common";
 import axios from "axios";
-import ShortedUrls from "./ShortedUrls";
 import Dev from "./Footer";
 import PasteIcon from "../images/paste.png";
 import ShareModel from "./ShareModel";
@@ -40,7 +39,7 @@ const Hero = () => {
       //  ask user to login first
       if (!user) {
         toast.success(" please login to continue");
-          loginWithGoogle();
+        loginWithGoogle();
         return;
       }
       // Send a POST request with the original URL in the body
@@ -85,39 +84,44 @@ const Hero = () => {
 
   return (
     <div className="flex  flex-col  items-center justify-around  rounded-lg  h-[90vh] w-full ">
-      <div className="flex  flex-col sm:flex-row  items-center justify-around border-2 shadow-md  rounded-lg m-2 h-[85vh] bg-gray-100  w-full sm:w-11/12 p-4 overflow-hidden">
-        <div className=" flex flex-col justify-center w-full   p-0 sm:p-8    sm:w-2/3 lg:w-4/5  h-auto sm:h-full  rounded-xl ">
-          <h1 className="text-4xl sm:text-5xl font-bold w-full">
-            Shorten Your Links Instantly!!
+      <div className="flex  flex-col sm:flex-row  items-center justify-around  shadow-md  rounded-lg m-2 h-[85vh] bg-gray-50  w-full sm:w-11/12 p-4 overflow-hidden">
+         <div className="flex flex-col justify-center w-full sm:w-2/3 lg:w-4/5 text-center sm:text-left">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+            Shorten URLs, Share{" "}
+            <span className="text-red-400">Effortlessly</span>
           </h1>
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mt-4 sm:mt-6">
+            Transform long, complex URLs into short, shareable links with
+            powerful analytics and QR code generation.
+          </p>
 
-          <div className="flex flex-col w-full  sm:flex-row sm:p-2 items-center  gap-0 sm:gap-5 mt-6  sm:mt-10  p-2">
-            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 sm:mt-10 w-full">
+            <button
+              aria-label="Paste from clipboard"
+              onClick={handlePaste}
+              className="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 transition"
+            >
+              <Image
+                src={PasteIcon}
+                alt="Paste Icon"
+                className="w-6 h-6 cursor-pointer"
+              />
+            </button>
 
             <Input
               onChange={(e) => setUrl(e.target.value)}
               type="text"
               value={url}
               placeholder="Paste URL here"
-              className="py-6"
+              className="flex-1 px-3 py-4 sm:py-8 text-base sm:text-2xl"
             />
 
-            <div className=" flex flex-row  gap-5 items-center justify-between">
-              <Image
-                onClick={() => handlePaste()}
-                src={PasteIcon}
-                alt="Paste Icon"
-                className="w-6 h-6 mr-1  cursor-pointer"
-              />
-
-              <ShinyButton
-                onClick={() => onSubmit_(url)}
-                className="py-6 mt-5 sm:m-0 hover:bg-gray-200"
-              >
-                {" "}
-                Shorten
-              </ShinyButton>
-            </div>
+            <ShinyButton
+              onClick={() => onSubmit_(url)}
+              className="py-4 sm:py-5 px-6 text-base sm:text-lg mt-4 sm:mt-0  text-white hover:bg-gray-200 transition "
+            >
+              Shorten
+            </ShinyButton>
           </div>
         </div>
         {/* show model */}
@@ -129,13 +133,11 @@ const Hero = () => {
           />
         )}
 
-        {/* horted URLS separated Components!!! */}
-        <ShortedUrls />
-
         {/*  CustomLoader Components!!! */}
         {loading && <Spinner size="large" />}
       </div>
-
+      {/* horted URLS separated Components!!! */}
+      {/* <ShortedUrls /> */}
       {/* slider and developer components! */}
       {/* <AutoSlider /> */}
       <Dev />

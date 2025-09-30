@@ -11,18 +11,18 @@ const Footer = () => {
   if (loading) return <FooterSkeleton />;
 
   return (
-    <footer className="bg-slate-100 w-full py-4">
-      <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:justify-between container mx-auto px-4">
-        <div className="flex items-center space-x-0 sm:space-x-2">
-          <span className="text-sm sm:text-lg font-semibold">
+    <footer className=" w-full items-center justify-center  py-1 sm:py-4 ">
+      <div className="flex flex-col items-center   sm:flex-row  sm:justify-between container mx-auto px-4">
+        <div className="flex items-center ">
+          <span className="text-sm sm:text-lg text-gray-500 font-semibold">
             Developed with ❤️ by Huzefa Bin Juned
           </span>
-          <span className="text-gray-400 hidden sm:inline-block">
+          <span className="text-gray-300 hidden sm:inline-block px-2">
             | Passionate Full Stack Developer
           </span>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center   space-x-0 sm:space-x-4  flex-row  w-44 sm:w-36  justify-around">
           <a
             href="https://github.com/huzefajuned"
             target="_blank"
@@ -45,18 +45,17 @@ const Footer = () => {
               <AvatarImage src={user.photoURL || ""} alt="@shadcn" />
             </Avatar>
           )}
+          {/*  login logout buttons */}
+          {user ? (
+            <ShinyButton onClick={logout}>Logout</ShinyButton>
+          ) : (
+            <ShinyButton onClick={loginWithGoogle}>login</ShinyButton>
+          )}
         </div>
 
-        <div className="text-gray-600 hidden sm:flex text-sm">
+        <div className="text-gray-400 hidden sm:flex text-sm">
           © {new Date().getFullYear()} Huzefa Bin Juned. All rights reserved.
         </div>
-
-        {/*  login logout buttons */}
-        {user ? (
-          <ShinyButton onClick={logout}>Logout</ShinyButton>
-        ) : (
-          <ShinyButton onClick={loginWithGoogle}>login</ShinyButton>
-        )}
       </div>
     </footer>
   );

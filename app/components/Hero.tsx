@@ -13,7 +13,7 @@ import { ShinyButton } from "@/app/components/ui/shiny-button";
 import useAuthStore from "../store/user";
 
 const Hero = () => {
-  const { user, loginWithGoogle } = useAuthStore();
+  const { user } = useAuthStore();
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<boolean>(false);
@@ -39,19 +39,15 @@ const Hero = () => {
       //  ask user to login first
       if (!user) {
         toast.success(" please login to continue");
-        loginWithGoogle();
+        // loginWithGoogle();
         return;
       }
       // Send a POST request with the original URL in the body
       const response = await axios.post("/api/url", { url });
 
-      console.log("response in  shortUrl", response);
-      // toast after succes create
       if (response.status === 201) {
         toast.success(`${response.data.message}`);
       }
-      // toast  if duplicate  found!
-
       if (response.status === 200) {
         toast.success(`${response.data.message}`);
       }
@@ -118,7 +114,7 @@ const Hero = () => {
 
             <ShinyButton
               onClick={() => onSubmit_(url)}
-              className="py-4 sm:py-5 px-6 text-base sm:text-lg mt-4 sm:mt-0  text-white hover:bg-gray-200 transition "
+              className="py-4 sm:py-5 px-6 text-base sm:text-lg mt-4 sm:mt-0 z-0  text-white hover:bg-gray-200 transition "
             >
               Shorten
             </ShinyButton>
